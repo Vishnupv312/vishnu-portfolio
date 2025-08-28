@@ -67,7 +67,7 @@ const TextType = ({
 
   const textArray = useMemo(
     () => (Array.isArray(text) ? text : [text]),
-    [text],
+    [text]
   );
 
   const getRandomSpeed = useCallback(() => {
@@ -77,7 +77,7 @@ const TextType = ({
   }, [variableSpeed, typingSpeed]);
 
   const getCurrentTextColor = () => {
-    if (textColors.length === 0) return "#ffffff";
+    if (textColors.length === 0) return "";
     return textColors[currentTextIndex % textColors.length];
   };
 
@@ -92,7 +92,7 @@ const TextType = ({
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
 
     observer.observe(containerRef.current);
@@ -147,11 +147,11 @@ const TextType = ({
           timeout = setTimeout(
             () => {
               setDisplayedText(
-                (prev) => prev + processedText[currentCharIndex],
+                (prev) => prev + processedText[currentCharIndex]
               );
               setCurrentCharIndex((prev) => prev + 1);
             },
-            variableSpeed ? getRandomSpeed() : typingSpeed,
+            variableSpeed ? getRandomSpeed() : typingSpeed
           );
         } else if (textArray.length > 1) {
           timeout = setTimeout(() => {
@@ -202,11 +202,13 @@ const TextType = ({
     showCursor && (
       <span
         ref={cursorRef}
-        className={`ml-1 inline-block opacity-100 ${shouldHideCursor ? "hidden" : ""} ${cursorClassName}`}
+        className={`ml-1 inline-block opacity-100 ${
+          shouldHideCursor ? "hidden" : ""
+        } ${cursorClassName}`}
       >
         {cursorCharacter}
       </span>
-    ),
+    )
   );
 };
 

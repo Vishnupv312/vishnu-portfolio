@@ -146,7 +146,7 @@ export default function HomePage() {
                 pauseDuration={1500}
                 showCursor={true}
                 cursorCharacter="|"
-                className="text-4xl"
+                className="text-4xl dark:text-white text-black"
               />
             </h1>
           </div>
