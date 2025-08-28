@@ -11,137 +11,124 @@ import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { ColourfulText } from "@/components/ui/colourful-text";
 import Link from "next/link";
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
-
+import { HeroHighlight } from "@/components/ui/hero-highlight";
+import { useEffect, useState } from "react";
+import { LoaderThree } from "@/components/ui/loader";
+import TextType from "@/components/ui/TextAnimations/TextType/TextType";
+import GradientText from "@/components/ui/TextAnimations/GradientText/GradientText";
+import ScrollFloat from "@/components/ui/TextAnimations/ScrollFloat/ScrollFloat";
+import ScrollReveal from "@/components/ui/TextAnimations/ScrollReveal/ScrollReveal";
+// import SplashCursor from "@/components/ui/Animations/SplashCursor/SplashCursor";
 const skills = [
-  { name: "MongoDB", skillId: "mongodb", level: "Advanced" as const },
-  { name: "Express.js", skillId: "express", level: "Advanced" as const },
-  { name: "React", skillId: "react", level: "Advanced" as const },
-  { name: "Node.js", skillId: "nodejs", level: "Advanced" as const },
-  { name: "Next.js", skillId: "nextjs", level: "Advanced" as const },
-  { name: "TailwindCSS", skillId: "tailwind", level: "Advanced" as const },
-  { name: "TypeScript", skillId: "ts", level: "Intermediate" as const },
-  { name: "Git", skillId: "git", level: "Intermediate" as const },
-  { name: "AWS", skillId: "aws", level: "Begineer" as const },
+  {
+    name: "MongoDB",
+    skillId: "mongodb",
+    level: "Advanced" as const,
+    url: "https://www.mongodb.com/",
+  },
+  {
+    name: "Express.js",
+    skillId: "express",
+    level: "Advanced" as const,
+    url: "https://expressjs.com/",
+  },
+  {
+    name: "React",
+    skillId: "react",
+    level: "Advanced" as const,
+    url: "https://react.dev/",
+  },
+  {
+    name: "Node.js",
+    skillId: "nodejs",
+    level: "Advanced" as const,
+    url: "https://nodejs.org/en",
+  },
+  {
+    name: "Next.js",
+    skillId: "nextjs",
+    level: "Advanced" as const,
+    url: "https://nextjs.org/",
+  },
+  {
+    name: "TailwindCSS",
+    skillId: "tailwind",
+    level: "Advanced" as const,
+    url: "https://tailwindcss.com/",
+  },
+  {
+    name: "TypeScript",
+    skillId: "ts",
+    level: "Intermediate" as const,
+    url: "https://www.typescriptlang.org/",
+  },
+  {
+    name: "Git",
+    skillId: "git",
+    level: "Intermediate" as const,
+    url: "https://git-scm.com/",
+  },
+  {
+    name: "AWS",
+    skillId: "aws",
+    level: "Begineer" as const,
+    url: "https://aws.amazon.com/",
+  },
   // { name: "React Native", skillId: "react", level: "Intermediate" as const }, // Note: React Native uses the same React icon
 ];
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-stack MERN e-commerce solution with payment integration",
+    title: "DigiDine - QR Code Menu Generator",
+    description: "Full-stack MERN app for restaurants",
     longDescription:
-      "A comprehensive e-commerce platform built with the MERN stack, featuring user authentication, product management, shopping cart, and Stripe payment integration. Includes admin dashboard for inventory management.",
+      "DigiDine is a full-stack MERN application that allows restaurants to easily create and manage digital menus. Owners can sign up, customize their menu with categories, products, and pricing, and instantly generate a QR code that links to their restaurant page. Customers can scan the QR code to view a clean, responsive menu. Includes an admin dashboard for restaurant management, analytics, and theme customization.",
     technologies: [
       "React",
+      "Next.js",
       "Node.js",
       "MongoDB",
       "Express.js",
-      "Stripe",
-      "JWT",
       "TailwindCSS",
+      "JWT",
+      "Cloudinary",
+      "Redis",
     ],
-    githubUrl: "https://github.com/johndoe/ecommerce-platform",
-    demoUrl: "https://ecommerce-demo.vercel.app",
-    imageUrl: "/modern-ecommerce-interface.png",
-    year: "2024",
+    githubUrl: "https://github.com/vishnupv312/digidine-frontend",
+    demoUrl: "https://digidine-frontend.vercel.app",
+    imageUrl: "/digidine-preview.png",
+    year: "2025",
     featured: true,
-  },
-  {
-    title: "Task Management App",
-    description: "Collaborative project management tool with real-time updates",
-    longDescription:
-      "A modern task management application with real-time collaboration features, drag-and-drop functionality, team workspaces, and progress tracking. Built with Next.js and Socket.io for seamless real-time experience.",
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "Socket.io",
-      "Prisma",
-      "PostgreSQL",
-      "Shadcn UI",
-    ],
-    githubUrl: "https://github.com/johndoe/task-manager",
-    demoUrl: "https://taskmanager-demo.vercel.app",
-    imageUrl: "/task-management-dashboard.png",
-    year: "2024",
-  },
-  {
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social media management",
-    longDescription:
-      "A comprehensive social media analytics dashboard that aggregates data from multiple platforms, provides insights, and helps manage social media presence with scheduling features and performance metrics.",
-    technologies: [
-      "React",
-      "D3.js",
-      "Node.js",
-      "MongoDB",
-      "Express.js",
-      "Chart.js",
-    ],
-    githubUrl: "https://github.com/johndoe/social-dashboard",
-    demoUrl: "https://social-dashboard-demo.vercel.app",
-    imageUrl: "/social-media-analytics-dashboard.png",
-    year: "2023",
-  },
-  {
-    title: "Weather Forecast App",
-    description: "Beautiful weather app with location-based forecasts",
-    longDescription:
-      "A sleek weather application providing detailed forecasts, interactive maps, and location-based weather alerts. Features beautiful animations and responsive design for optimal user experience across devices.",
-    technologies: [
-      "React Native",
-      "TypeScript",
-      "OpenWeather API",
-      "Expo",
-      "Async Storage",
-    ],
-    githubUrl: "https://github.com/johndoe/weather-app",
-    imageUrl: "/weather-forecast-mobile-app-interface.png",
-    year: "2023",
-  },
-  {
-    title: "Blog CMS Platform",
-    description: "Content management system for bloggers and writers",
-    longDescription:
-      "A powerful content management system designed for bloggers and content creators, featuring rich text editing, media management, SEO optimization, and multi-author support with role-based permissions.",
-    technologies: [
-      "Next.js",
-      "Sanity CMS",
-      "TailwindCSS",
-      "Vercel",
-      "TypeScript",
-    ],
-    githubUrl: "https://github.com/johndoe/blog-cms",
-    demoUrl: "https://blog-cms-demo.vercel.app",
-    imageUrl: "/blog-content-management-system-interface.png",
-    year: "2023",
-  },
-  {
-    title: "Fitness Tracker API",
-    description: "RESTful API for fitness and workout tracking applications",
-    longDescription:
-      "A robust RESTful API built for fitness applications, providing endpoints for workout tracking, progress monitoring, user management, and integration with wearable devices. Includes comprehensive documentation and testing suite.",
-    technologies: [
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "JWT",
-      "Swagger",
-      "Jest",
-    ],
-    githubUrl: "https://github.com/johndoe/fitness-api",
-    imageUrl: "/fitness-tracking-api-documentation.png",
-    year: "2022",
   },
 ];
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    // Changed from !loading to loading
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center">
+        <LoaderThree />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <FloatingNavDemo />
       {/* <Navigation /> */}
       <main className="container mx-auto px-4">
         <section className="flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center py-12">
+          {/* <SplashCursor /> */}
           {/* <div className="h-screen w-full flex items-center justify-center relative overflow-hidden bg-black"> */}
           {/* <motion.img
               src="https://assets.aceternity.com/linear-demo.webp"
@@ -153,7 +140,14 @@ export default function HomePage() {
           <div>
             <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-black dark:text-white relative z-2 font-sans">
               Hi, I&apos;m <ColourfulText text="Vishnu" /> <br />
-              <p className="text-4xl">A Software Engineer</p>
+              <TextType
+                text={["a Software Engineer", "a Full Stack Dev"]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+                className="text-4xl"
+              />
             </h1>
           </div>
           <motion.div className="pt-10">
@@ -303,13 +297,18 @@ export default function HomePage() {
             //   duration: 0.5,
             //   ease: [0.4, 0.0, 0.2, 1],
             // }}
-            className="text-2xl px-4 md:text-4xl lg:text-3xl font-bold text-neutral-700 dark:text-white max-w-6xl leading-relaxed lg:leading-snug text-center mx-auto "
+            className="text-md lg:px-4 md:text-4xl lg:text-3xl font-bold text-neutral-700 dark:text-white max-w-6xl leading-relaxed lg:leading-snug text-center mx-auto "
           >
             I craft modern web applications with React, Node.js, and
             cutting-edge technologies. Passionate about creating seamless
-            <Highlight className="text-black dark:text-white">
+            <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class"
+            >
               user experiences and scalable solutions.
-            </Highlight>
+            </GradientText>
           </motion.h1>
           <motion.div
             className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6 pt-10"
@@ -361,18 +360,27 @@ export default function HomePage() {
 
         <section id="skills" className="py-20">
           <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+            {/* <h2 className="text-3xl font-bold text-foreground mb-4"> */}
+            <ScrollFloat
+              animationDuration={1}
+              ease="back.inOut(2)"
+              scrollStart="center bottom+=50%"
+              scrollEnd="bottom bottom-=40%"
+              stagger={0.03}
+            >
               Skills & Technologies
-            </h2>
+            </ScrollFloat>
+            {/* </h2> */}
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Proficient in modern web technologies with a focus on the MERN
               stack and cutting-edge development tools.
             </p>
           </AnimatedSection>
 
-          <StaggeredContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          <StaggeredContainer className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {skills.map((skill) => (
               <SkillBadge
+                url={skill.url}
                 key={skill.name}
                 name={skill.name}
                 skillId={skill.skillId}
@@ -381,15 +389,25 @@ export default function HomePage() {
           </StaggeredContainer>
         </section>
 
-        <section id="experience" className="py-20 bg-muted/30">
+        <section
+          id="experience"
+          className="py-20 bg-muted/30"
+          data-tall-section="true"
+        >
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Experience & Journey
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <ScrollReveal
+              baseOpacity={0}
+              enableBlur={true}
+              baseRotation={5}
+              blurStrength={10}
+              textClassName="!text-lg text-muted-foreground max-w-7xl mx-auto"
+            >
               My professional journey as a Full-Stack Developer, from
               internships to leading development teams.
-            </p>
+            </ScrollReveal>
           </AnimatedSection>
 
           <AnimatedSection className="max-w-4xl mx-auto" delay={0.2}>
