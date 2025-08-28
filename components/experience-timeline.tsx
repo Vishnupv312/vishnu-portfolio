@@ -103,7 +103,7 @@ export function ExperienceTimeline() {
             {/* Content */}
             <div
               className={`ml-12 md:ml-0 ${
-                index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"
+                index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-4"
               } md:w-1/2`}
             >
               <motion.div
