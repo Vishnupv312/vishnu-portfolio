@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { FloatingNavDemo } from "@/components/navbar";
 import SmoothScroll from "@/utils/smooth-scroll-lenis";
-
+import { Analytics } from "@vercel/analytics/next";
 const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
@@ -37,6 +37,7 @@ export default function RootLayout({
             <FloatingNavDemo />
 
             {children}
+            <Analytics />
           </>
         </ThemeProvider>
       </body>
