@@ -71,7 +71,7 @@ const skills = [
   {
     name: "AWS",
     skillId: "aws",
-    level: "Begineer" as const,
+    level: "Beginner" as const,
     url: "https://aws.amazon.com/",
   },
   // { name: "React Native", skillId: "react", level: "Intermediate" as const }, // Note: React Native uses the same React icon
@@ -331,7 +331,7 @@ export default function HomePage() {
             >
               <Button variant="ghost" size="icon" asChild>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Vishnupv312"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
@@ -341,7 +341,7 @@ export default function HomePage() {
               </Button>
               <Button variant="ghost" size="icon" asChild>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/vishnu-vijayan-p/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn Profile"
@@ -380,6 +380,7 @@ export default function HomePage() {
           <StaggeredContainer className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {skills.map((skill) => (
               <SkillBadge
+                level={skill.level}
                 url={skill.url}
                 key={skill.name}
                 name={skill.name}
@@ -449,7 +450,7 @@ export default function HomePage() {
           <AnimatedSection className="text-center mt-12" delay={0.4}>
             <Button variant="outline" size="lg" asChild>
               <a
-                href="https://github.com/johndoe"
+                href="https://github.com/Vishnupv312"
                 target="_blank"
                 rel="noopener noreferrer"
               >

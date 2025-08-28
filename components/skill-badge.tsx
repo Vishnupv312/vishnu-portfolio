@@ -8,15 +8,10 @@ interface SkillBadgeProps {
   url: string;
   name: string;
   skillId: string;
-  level?: "Beginner" | "Intermediate" | "Advanced" | "Expert";
+  level: "Beginner" | "Intermediate" | "Advanced" | "Expert";
 }
 
-export function SkillBadge({
-  url,
-  name,
-  skillId,
-  level = "Advanced",
-}: SkillBadgeProps) {
+export function SkillBadge({ url, name, skillId, level }: SkillBadgeProps) {
   const levelColors = {
     Beginner: "bg-chart-3/10 text-chart-3 border-chart-3/20",
     Intermediate: "bg-chart-2/10 text-chart-2 border-chart-2/20",
