@@ -350,7 +350,10 @@ export default function HomePage() {
                 </a>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <a href="mailto:john@example.com" aria-label="Email Contact">
+                <a
+                  href="mailto:vishnupv312@gmail.com"
+                  aria-label="Email Contact"
+                >
                   <Mail className="h-5 w-5" />
                 </a>
               </Button>
